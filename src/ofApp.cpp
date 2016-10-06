@@ -6,24 +6,27 @@ void ofApp::setup(){
     ofSetFrameRate(60);
 
     // 1,000,000 particles
-    unsigned w = 1000;
-    unsigned h = 1000;
+    unsigned w = 1100;
+    unsigned h = 1100;
 
-    particles.init(w, h);
+    particles.init(w, h, OF_PRIMITIVE_POINTS, false, 3);
 
     particles.loadShaders("shaders330/update", "shaders330/draw");
 
     // initial positions
     // use new to allocate 4,000,000 floats on the heap rather than
     // the stack
+    float wWidth = ofGetWidth() * 1.f;
+    float wHeight = ofGetHeight() * 1.f;
+
     float* particlePosns = new float[w * h * 4];
     for (unsigned y = 0; y < h; ++y)
     {
         for (unsigned x = 0; x < w; ++x)
         {
             unsigned idx = y * w + x;
-            particlePosns[idx * 4] = 400.f * x / (float)w - 200.f; // particle x
-            particlePosns[idx * 4 + 1] = 400.f * y / (float)h - 200.f; // particle y
+            particlePosns[idx * 4] = wWidth * x / (float)w - (wWidth/2); // particle x
+            particlePosns[idx * 4 + 1] = wHeight * y / (float)h - (wHeight/2); // particle y
             particlePosns[idx * 4 + 2] = 0.f; // particle z
             particlePosns[idx * 4 + 3] = 0.f; // dummy
         }
@@ -33,6 +36,11 @@ void ofApp::setup(){
 
     // initial velocities
     particles.zeroDataTexture(ofxGpuParticles::VELOCITY);
+
+    // initial forces
+    // cols and rows to calculate how many forces;
+
+    particles.zeroDataTexture(ofxGpuParticles::FORCE);
 
     // listen for update event to set additonal update uniforms
     ofAddListener(particles.updateEvent, this, &ofApp::onParticlesUpdate);
@@ -51,7 +59,13 @@ void ofApp::onParticlesUpdate(ofShader& shader)
     ofVec3f mouse(ofGetMouseX() - .5f * ofGetWidth(), .5f * ofGetHeight() - ofGetMouseY() , 0.f);
     shader.setUniform3fv("mouse", mouse.getPtr());
     shader.setUniform1f("elapsed", ofGetLastFrameTime());
+    shader.setUniform1f("time", ofGetElapsedTimeMillis());
     shader.setUniform1f("radiusSquared", 200.f * 200.f);
+    float w = ofGetWidth() * 1.f;
+    float h = ofGetHeight() * 1.f;
+    ofVec2f resolution(w, h);
+    shader.setUniform2fv("resolution", resolution.getPtr());
+
 }
 
 //--------------------------------------------------------------

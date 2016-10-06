@@ -27,7 +27,12 @@ class ofApp : public ofBaseApp{
   private:
     // set any update uniforms in this function
     void onParticlesUpdate(ofShader& shader);
-
+    bool isInCircle(int x, int y, int r) {
+      x -= r;
+      y -= r;
+      float posR = sqrt(x*x + y*y);
+      return posR < r;
+    }
     ofxGpuParticles particles;
     ofEasyCam cam;
 };
