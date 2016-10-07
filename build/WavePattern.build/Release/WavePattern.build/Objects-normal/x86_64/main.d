@@ -552,4 +552,13 @@ dependencies: \
   ../../../libs/openFrameworks/3d/ofCamera.h \
   ../../../libs/openFrameworks/3d/ofEasyCam.h src/ofApp.h \
   /Users/dario/lib/of_v0.9.3_osx_release/addons/ofxGpuParticles/src/ofxGpuParticles.h \
-  ../../../addons/ofxGpuParticles/src/GpuParticles.h
+  ../../../addons/ofxGpuParticles/src/GpuParticles.h \
+  /Users/dario/lib/of_v0.9.3_osx_release/addons/ofxGui/src/ofxGui.h \
+  ../../../addons/ofxGui/src/ofxToggle.h \
+  ../../../addons/ofxGui/src/ofxBaseGui.h \
+  ../../../addons/ofxGui/src/ofxSlider.h \
+  ../../../addons/ofxGui/src/ofxSliderGroup.h \
+  ../../../addons/ofxGui/src/ofxGuiGroup.h \
+  ../../../addons/ofxGui/src/ofxButton.h \
+  ../../../addons/ofxGui/src/ofxPanel.h \
+  ../../../addons/ofxGui/src/ofxLabel.h

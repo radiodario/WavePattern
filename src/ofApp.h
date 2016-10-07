@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxGpuParticles.h"
+#include "ofxGui.h"
 
 #define _PROGRAMMABLE_RENDERER
 
@@ -35,4 +36,13 @@ class ofApp : public ofBaseApp{
     }
     ofxGpuParticles particles;
     ofEasyCam cam;
+
+    ofxPanel gui;
+    ofParameter<float> emitter1freq;
+    ofParameter<float> emitter2freq;
+    ofParameter<float> emitter3freq;
+    ofParameter<float> emitter1amp;
+    ofParameter<float> emitter2amp;
+    ofParameter<float> emitter3amp;
+    ofParameter<float> damping;
 };

@@ -1,2 +1,3 @@
 ofxGpuParticles
+ofxGui
 ofxOsc
