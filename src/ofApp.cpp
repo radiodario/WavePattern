@@ -13,7 +13,7 @@ void ofApp::setup(){
   gui.add(emitter1amp.set("emitter1amp", 10.0, 1.0, 1000));
   gui.add(emitter2amp.set("emitter2amp", 10.0, 1.0, 1000));
   gui.add(emitter3amp.set("emitter3amp", 10.0, 1.0, 1000));
-  gui.add(damping.set("damping", 0.0001, 0, 1));
+  gui.add(damping.set("damping", 0.0801, 0, 1));
   // 1,000,000 particles
   unsigned w = 1100;
   unsigned h = 1100;
