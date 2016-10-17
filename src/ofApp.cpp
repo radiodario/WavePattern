@@ -9,9 +9,9 @@ void ofApp::setup(){
   gui.add(emitter1freq.set("emitter1freq", 111.0, 1.0, 600));
   gui.add(emitter2freq.set("emitter2freq", 111.0, 1.0, 600));
   gui.add(emitter3freq.set("emitter3freq", 111.0, 1.0, 600));
-  gui.add(emitter1amp.set("emitter1amp", 10.0, 1.0, 100));
-  gui.add(emitter2amp.set("emitter2amp", 10.0, 1.0, 100));
-  gui.add(emitter3amp.set("emitter3amp", 10.0, 1.0, 100));
+  gui.add(emitter1amp.set("emitter1amp", 10.0, 1.0, 1000));
+  gui.add(emitter2amp.set("emitter2amp", 10.0, 1.0, 1000));
+  gui.add(emitter3amp.set("emitter3amp", 10.0, 1.0, 1000));
   gui.add(damping.set("damping", 0.0001, 0, 1));
   // 1,000,000 particles
   unsigned w = 1100;

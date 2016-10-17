@@ -1,0 +1,9 @@
+<group>
+	<emitter1freq>111</emitter1freq>
+	<emitter2freq>111</emitter2freq>
+	<emitter3freq>111</emitter3freq>
+	<emitter1amp>780.22</emitter1amp>
+	<emitter2amp>910.09</emitter2amp>
+	<emitter3amp>905.095</emitter3amp>
+	<damping>0.04385</damping>
+</group>

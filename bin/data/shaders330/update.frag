@@ -32,10 +32,10 @@ vec3 bowlSound(vec3 partPos, vec3 attrPos, float radius, float freq, float amp) 
   vec3 direction = partPos.xyz - attrPos;
   float dist = distance(attrPos, partPos);
   //float mag = (sin((time-timeBack) / freq) * amp) * (1.0 - distSq / radiusSq);
-  float f = 1000 / freq * 16;
+  float f = 2000 / freq;
   float t = int(time);// % int(freq);
   float mag = sin(time) * sin((dist)*TWO_PI/f) * amp;
-  force += mag * direction;
+  force += mag * normalize(direction);
   return force;
 }
 
@@ -95,24 +95,12 @@ void main()
     vec3 force = getForceForParticle(pos);
     //vec3 force = vec3(0.);
 
-    // lookup which force applies to the position
-    //vec3 force = vec3(0.);
-
-    // second attractor in (0.1, 0.9)
-//    vec3 bowl1Pos = vec3(0.0, -200.0, 0.0);
-//    vec3 bowl2Pos = vec3(-200.0, 100.0, 0.0);
-//    vec3 bowl3Pos = vec3(200.0, 100.0, 0.0);
-//    force += bowlSound(pos, bowl1Pos, 500.0, 10.0, 2000.0);
-//    force += bowlSound(pos, bowl2Pos, 500.0, 10.0, 2000.0);
-//    force += bowlSound(pos, bowl3Pos, 500.0, 10.0, 2000.0);
-    // gravity
-    //force += vec3(0.0, -9.5, 0.0);
-
     // accelerate
     vel += elapsed * force;
 
     // bounce off the sides
-    vel *= step(abs(pos), vec3(resolution,1.)/2) * 2.0 - 1.0;
+    vel.x *= step(abs(pos.x), resolution.x/2) * 2.0 - 1.0;
+    vel.y *= step(abs(pos.y), resolution.y/2) * 2.0 - 1.0;
 
     // damping
     vel *= 1 - damping;
