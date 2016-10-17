@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofxGpuParticles.h"
 #include "ofxGui.h"
+#include "ofxOsc.h"
 
 #define _PROGRAMMABLE_RENDERER
 
@@ -28,6 +29,7 @@ class ofApp : public ofBaseApp{
   private:
     // set any update uniforms in this function
     void onParticlesUpdate(ofShader& shader);
+    void handleOscMessages();
     bool isInCircle(int x, int y, int r) {
       x -= r;
       y -= r;
@@ -45,4 +47,5 @@ class ofApp : public ofBaseApp{
     ofParameter<float> emitter2amp;
     ofParameter<float> emitter3amp;
     ofParameter<float> damping;
+    ofxOscReceiver receive;
 };

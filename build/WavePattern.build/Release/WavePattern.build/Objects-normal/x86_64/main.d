@@ -561,4 +561,19 @@ dependencies: \
   ../../../addons/ofxGui/src/ofxGuiGroup.h \
   ../../../addons/ofxGui/src/ofxButton.h \
   ../../../addons/ofxGui/src/ofxPanel.h \
-  ../../../addons/ofxGui/src/ofxLabel.h
+  ../../../addons/ofxGui/src/ofxLabel.h \
+  /Users/dario/lib/of_v0.9.3_osx_release/addons/ofxOsc/src/ofxOsc.h \
+  ../../../addons/ofxOsc/src/ofxOscArg.h \
+  ../../../addons/ofxOsc/src/ofxOscMessage.h \
+  ../../../addons/ofxOsc/src/ofxOscSender.h \
+  /Users/dario/lib/of_v0.9.3_osx_release/addons/ofxOsc/libs/oscpack/src/osc/OscTypes.h \
+  /Users/dario/lib/of_v0.9.3_osx_release/addons/ofxOsc/libs/oscpack/src/osc/OscOutboundPacketStream.h \
+  ../../../addons/ofxOsc/libs/oscpack/src/osc/OscException.h \
+  /Users/dario/lib/of_v0.9.3_osx_release/addons/ofxOsc/libs/oscpack/src/ip/UdpSocket.h \
+  ../../../addons/ofxOsc/libs/oscpack/src/ip/NetworkingUtils.h \
+  ../../../addons/ofxOsc/libs/oscpack/src/ip/IpEndpointName.h \
+  ../../../addons/ofxOsc/src/ofxOscBundle.h \
+  ../../../addons/ofxOsc/src/ofxOscReceiver.h \
+  /Users/dario/lib/of_v0.9.3_osx_release/addons/ofxOsc/libs/oscpack/src/osc/OscPacketListener.h \
+  ../../../addons/ofxOsc/libs/oscpack/src/osc/OscReceivedElements.h \
+  ../../../addons/ofxOsc/libs/oscpack/src/osc/../ip/PacketListener.h

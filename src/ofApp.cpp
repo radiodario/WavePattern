@@ -5,6 +5,7 @@ void ofApp::setup(){
   ofBackground(0);
   ofSetFrameRate(60);
 
+  receive.setup(5001);
   gui.setup();
   gui.add(emitter1freq.set("emitter1freq", 111.0, 1.0, 600));
   gui.add(emitter2freq.set("emitter2freq", 111.0, 1.0, 600));
@@ -58,6 +59,7 @@ void ofApp::setup(){
 void ofApp::update()
 {
   ofSetWindowTitle(ofToString(ofGetFrameRate(), 2));
+  handleOscMessages();
   particles.update();
 }
 
@@ -94,6 +96,41 @@ void ofApp::draw()
   gui.draw();
 }
 
+//--------------------------------------------------------------
+void ofApp::handleOscMessages() {
+  while (receive.hasWaitingMessages()) {
+    ofxOscMessage m;
+    receive.getNextMessage(&m);
+    string msgAddress = m.getAddress();
+
+    //ofLog(OF_LOG_NOTICE, msgAddress + " " + ofToString(m.getArgAsFloat(0)));
+    if (msgAddress == "/attack1") {
+    }
+    if (msgAddress == "/attack2") {
+    }
+    if (msgAddress == "/attack3") {
+    }
+    if (msgAddress == "/frequency1") {
+      emitter1freq = m.getArgAsFloat(0);
+    }
+    if (msgAddress == "/frequency2") {
+      emitter2freq = m.getArgAsFloat(0);
+    }
+    if (msgAddress == "/frequency3") {
+      emitter3freq = m.getArgAsFloat(0);
+    }
+    if (msgAddress == "/amplitude1") {
+      emitter1amp = m.getArgAsFloat(0) * 1000;
+    }
+    if (msgAddress == "/amplitude2") {
+      emitter2amp = m.getArgAsFloat(0) * 1000;
+    }
+    if (msgAddress == "/amplitude3") {
+      emitter3amp = m.getArgAsFloat(0) * 1000;
+    }
+  }
+
+}
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
 
