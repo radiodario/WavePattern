@@ -30,6 +30,7 @@ layout(location = 2) out vec4 forceOut;
 vec3 bowlSound(vec3 partPos, vec3 attrPos, float radius, float freq, float amp) {
   vec3 force = vec3(0.);
   vec3 direction = partPos.xyz - attrPos;
+  amp *= 0.5;
   float dist = distance(attrPos, partPos);
   //float mag = (sin((time-timeBack) / freq) * amp) * (1.0 - distSq / radiusSq);
   float f = 10000 / freq;
@@ -48,7 +49,7 @@ vec3 updateForce() {
 
   vec3 force = vec3(0.);//texture(particles2, forcePos).xyz;
   force += bowlSound(
-      vec3(forcePos, -1. + rand(elapsed)),
+      vec3(forcePos, (-1. + rand(elapsed)) * 0.1),
       vec3(500, 600., 0.),
       100.0,
       emitter1freq,// * sin(time*0.001) + 200.0,
@@ -56,7 +57,7 @@ vec3 updateForce() {
       );
 
   force += bowlSound(
-      vec3(forcePos, -1. + rand(elapsed)),
+      vec3(forcePos, (-1. + rand(elapsed)) * 0.1),
       vec3(250., 400., 0.),
       100.,
       emitter2freq,// * sin(time*0.0001) + 200.0,
@@ -64,7 +65,7 @@ vec3 updateForce() {
       );
 
   force += bowlSound(
-      vec3(forcePos, -1. + rand(elapsed)),
+      vec3(forcePos, (-1. + rand(elapsed)) * 0.1),
       vec3(750., 400., 0.),
       100.,
       emitter3freq,//220.0 * sin(time*0.001) + 200.0,

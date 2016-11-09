@@ -139,6 +139,15 @@ void ofApp::handleOscMessages() {
     if (msgAddress == "/amplitude3") {
       emitter3amp = m.getArgAsFloat(0) * 1000;
     }
+	if (msgAddress == "/cam/tilt") {
+		camTilt = m.getArgAsFloat(0);
+	}
+	if (msgAddress == "/cam/pan") {
+		camPan = m.getArgAsFloat(0);
+	}
+	if (msgAddress == "/cam/dolly") {
+		camDolly = m.getArgAsFloat(0);
+	}
   }
 
 }
@@ -151,6 +160,16 @@ void ofApp::keyPressed(int key){
 void ofApp::keyReleased(int key){
   if (key == 'h') {
     drawGui = !drawGui;
+  }
+  else if (key == 'f') {
+	ofToggleFullscreen();
+  }
+  else if (key == 'c') {
+	  camDolly = 0.0f;
+	  camPan = 0.0f;
+	  camTilt = 0.0f;
+	  camRoll = 0.0f;
+	  cam.reset();
   }
 }
 
