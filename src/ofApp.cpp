@@ -13,11 +13,16 @@ void ofApp::setup(){
   gui.add(emitter1amp.set("emitter1amp", 10.0, 1.0, 1000));
   gui.add(emitter2amp.set("emitter2amp", 10.0, 1.0, 1000));
   gui.add(emitter3amp.set("emitter3amp", 10.0, 1.0, 1000));
-  gui.add(damping.set("damping", 0.0801, 0, 1));
+  gui.add(camTilt.set("camTilt", 0, -1, 1));
+  gui.add(camRoll.set("camRoll", 0, -1, 1));
+  gui.add(camPan.set("camPan", 0, -1, 1));
+  gui.add(camDolly.set("camDolly", 0, -1, 1));
+  gui.add(damping.set("damping", 0.0081, 0, 1));
   // 1,000,000 particles
   unsigned w = 1100;
   unsigned h = 1100;
 
+  drawGui = false;
   particles.init(w, h, OF_PRIMITIVE_POINTS, false, 3);
 
   particles.loadShaders("shaders330/update", "shaders330/draw");
@@ -89,11 +94,17 @@ void ofApp::onParticlesUpdate(ofShader& shader)
 void ofApp::draw()
 {
   cam.begin();
+  cam.dolly(camDolly);
+  cam.tilt(camTilt);
+  cam.pan(camPan);
+  cam.roll(camRoll);
   ofEnableBlendMode(OF_BLENDMODE_ADD);
   particles.draw();
   ofDisableBlendMode();
   cam.end();
-  gui.draw();
+  if (drawGui) {
+    gui.draw();
+  }
 }
 
 //--------------------------------------------------------------
@@ -138,7 +149,9 @@ void ofApp::keyPressed(int key){
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-
+  if (key == 'h') {
+    drawGui = !drawGui;
+  }
 }
 
 //--------------------------------------------------------------

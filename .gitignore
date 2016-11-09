@@ -1,0 +1,4 @@
+obj
+build/*.app
+build/*.build
+bin/*.app

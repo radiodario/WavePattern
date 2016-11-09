@@ -39,6 +39,8 @@ class ofApp : public ofBaseApp{
     ofxGpuParticles particles;
     ofEasyCam cam;
 
+    bool drawGui;
+
     ofxPanel gui;
     ofParameter<float> emitter1freq;
     ofParameter<float> emitter2freq;
@@ -47,5 +49,9 @@ class ofApp : public ofBaseApp{
     ofParameter<float> emitter2amp;
     ofParameter<float> emitter3amp;
     ofParameter<float> damping;
+    ofParameter<float> camTilt;
+    ofParameter<float> camRoll;
+    ofParameter<float> camPan;
+    ofParameter<float> camDolly;
     ofxOscReceiver receive;
 };
