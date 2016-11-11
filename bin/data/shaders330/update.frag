@@ -20,6 +20,8 @@ uniform float emitter1amp;
 uniform float emitter2amp;
 uniform float emitter3amp;
 uniform float damping;
+uniform float amplitudeGain;
+uniform float frequencyGain;
 
 in vec2 texCoordVarying;
 
@@ -30,10 +32,10 @@ layout(location = 2) out vec4 forceOut;
 vec3 bowlSound(vec3 partPos, vec3 attrPos, float radius, float freq, float amp) {
   vec3 force = vec3(0.);
   vec3 direction = partPos.xyz - attrPos;
-  amp *= 0.5;
+  amp *= amplitudeGain;
   float dist = distance(attrPos, partPos);
   //float mag = (sin((time-timeBack) / freq) * amp) * (1.0 - distSq / radiusSq);
-  float f = 10000 / freq;
+  float f = frequencyGain / freq;
   float t = int(time);// % int(freq);
   float mag = sin(time) * sin((dist)*TWO_PI/f) * amp;
   force += mag * normalize(direction);

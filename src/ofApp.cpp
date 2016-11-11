@@ -10,14 +10,16 @@ void ofApp::setup(){
   gui.add(emitter1freq.set("emitter1freq", 111.0, 1.0, 600));
   gui.add(emitter2freq.set("emitter2freq", 111.0, 1.0, 600));
   gui.add(emitter3freq.set("emitter3freq", 111.0, 1.0, 600));
-  gui.add(emitter1amp.set("emitter1amp", 10.0, 1.0, 1000));
-  gui.add(emitter2amp.set("emitter2amp", 10.0, 1.0, 1000));
-  gui.add(emitter3amp.set("emitter3amp", 10.0, 1.0, 1000));
+  gui.add(emitter1amp.set("emitter1amp", 0.0, 0.0, 1000));
+  gui.add(emitter2amp.set("emitter2amp", 0.0, 0.0, 1000));
+  gui.add(emitter3amp.set("emitter3amp", 0.0, 0.0, 1000));
   gui.add(camTilt.set("camTilt", 0, -1, 1));
   gui.add(camRoll.set("camRoll", 0, -1, 1));
   gui.add(camPan.set("camPan", 0, -1, 1));
   gui.add(camDolly.set("camDolly", 0, -1, 1));
   gui.add(damping.set("damping", 0.0081, 0, 1));
+  gui.add(amplitudeGain.set("amplitudeGain", 0.5, 0, 100));
+  gui.add(frequencyGain.set("frequencyGain", 10000, 1000, 30000));
   // 1,000,000 particles
   unsigned w = 1100;
   unsigned h = 1100;
@@ -83,6 +85,8 @@ void ofApp::onParticlesUpdate(ofShader& shader)
   shader.setUniform1f("emitter2amp", emitter2amp);
   shader.setUniform1f("emitter3amp", emitter3amp);
   shader.setUniform1f("damping", damping);
+  shader.setUniform1f("frequencyGain", frequencyGain);
+  shader.setUniform1f("amplitudeGain", amplitudeGain);
   float w = ofGetWidth() * 1.f;
   float h = ofGetHeight() * 1.f;
   ofVec2f resolution(w, h);
@@ -139,6 +143,9 @@ void ofApp::handleOscMessages() {
     if (msgAddress == "/amplitude3") {
       emitter3amp = m.getArgAsFloat(0) * 1000;
     }
+	if (msgAddress == "/damping") {
+		damping = m.getArgAsFloat(0);
+	}
 	if (msgAddress == "/cam/tilt") {
 		camTilt = m.getArgAsFloat(0);
 	}
@@ -147,6 +154,22 @@ void ofApp::handleOscMessages() {
 	}
 	if (msgAddress == "/cam/dolly") {
 		camDolly = m.getArgAsFloat(0);
+	}
+	if (msgAddress == "/cam/reset") {
+		camDolly = 0.0f;
+		camPan = 0.0f;
+		camTilt = 0.0f;
+		camRoll = 0.0f;
+		cam.reset();
+	}
+	if (msgAddress == "/amplitudeGain") {
+		amplitudeGain = m.getArgAsFloat(0);
+	}
+	if (msgAddress == "/frequencyGain") {
+		frequencyGain = m.getArgAsFloat(0);
+	}
+	if (msgAddress == "/reset") {
+		setup();
 	}
   }
 
@@ -170,6 +193,9 @@ void ofApp::keyReleased(int key){
 	  camTilt = 0.0f;
 	  camRoll = 0.0f;
 	  cam.reset();
+  }
+  else if (key == 's') {
+	  setup();
   }
 }
 

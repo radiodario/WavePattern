@@ -53,5 +53,7 @@ class ofApp : public ofBaseApp{
     ofParameter<float> camRoll;
     ofParameter<float> camPan;
     ofParameter<float> camDolly;
+	ofParameter<float> amplitudeGain;
+	ofParameter<float> frequencyGain;
     ofxOscReceiver receive;
 };
