@@ -20,6 +20,7 @@ void ofApp::setup(){
   gui.add(damping.set("damping", 0.0081, 0, 1));
   gui.add(amplitudeGain.set("amplitudeGain", 0.5, 0, 100));
   gui.add(frequencyGain.set("frequencyGain", 10000, 1000, 30000));
+  gui.add(particleSize.set("particleSize", 1, 1, 10));
   // 1,000,000 particles
   unsigned w = 1100;
   unsigned h = 1100;
@@ -52,7 +53,6 @@ void ofApp::setup(){
 
   // initial velocities
   particles.zeroDataTexture(ofxGpuParticles::VELOCITY);
-
   // initial forces
   // cols and rows to calculate how many forces;
 
@@ -60,6 +60,9 @@ void ofApp::setup(){
 
   // listen for update event to set additonal update uniforms
   ofAddListener(particles.updateEvent, this, &ofApp::onParticlesUpdate);
+  ofAddListener(particles.drawEvent, this, &ofApp::onParticlesDraw);
+  ofDisableArbTex();
+  particleTexture.load("circle-64.png");
 }
 
 //--------------------------------------------------------------
@@ -92,6 +95,13 @@ void ofApp::onParticlesUpdate(ofShader& shader)
   ofVec2f resolution(w, h);
   shader.setUniform2fv("resolution", resolution.getPtr());
 
+}
+
+void ofApp::onParticlesDraw(ofShader& shader) {
+  shader.setUniform1f("imgWidth", particleTexture.getWidth());
+  shader.setUniform1f("imgHeight", particleTexture.getHeight());
+  shader.setUniformTexture("uTexture", particleTexture.getTexture(), 3);
+  shader.setUniform1f("size", particleSize);
 }
 
 //--------------------------------------------------------------

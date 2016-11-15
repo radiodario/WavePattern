@@ -29,6 +29,7 @@ class ofApp : public ofBaseApp{
   private:
     // set any update uniforms in this function
     void onParticlesUpdate(ofShader& shader);
+    void onParticlesDraw(ofShader& shader);
     void handleOscMessages();
     bool isInCircle(int x, int y, int r) {
       x -= r;
@@ -41,6 +42,7 @@ class ofApp : public ofBaseApp{
 
     bool drawGui;
 
+    ofImage particleTexture;
     ofxPanel gui;
     ofParameter<float> emitter1freq;
     ofParameter<float> emitter2freq;
@@ -53,7 +55,8 @@ class ofApp : public ofBaseApp{
     ofParameter<float> camRoll;
     ofParameter<float> camPan;
     ofParameter<float> camDolly;
-	ofParameter<float> amplitudeGain;
-	ofParameter<float> frequencyGain;
+    ofParameter<float> particleSize;
+    ofParameter<float> amplitudeGain;
+    ofParameter<float> frequencyGain;
     ofxOscReceiver receive;
 };
